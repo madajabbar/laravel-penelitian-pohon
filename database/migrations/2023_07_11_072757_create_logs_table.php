@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sensor_id');
-            $table->integer('soil_moisture');
-            $table->integer('humidity');
-            $table->integer('temperature');
+            $table->integer('soil_moisture')->nullable();
+            $table->integer('humidity')->nullable();
+            $table->integer('temperature')->nullable();
             $table->timestamps();
 
             $table->foreign('sensor_id')->references('id')->on('sensors')->onUpdate('CASCADE')->onDelete('CASCADE');

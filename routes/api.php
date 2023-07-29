@@ -39,3 +39,5 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:true'])->group(
         Route::resource('/relay', RelayController::class);
     }
 );
+
+Route::post('/log', [LogController::class,'store']);

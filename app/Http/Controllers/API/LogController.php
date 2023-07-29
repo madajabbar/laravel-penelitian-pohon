@@ -6,6 +6,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\Log;
 use App\Models\Node;
+use App\Models\Sensor;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,31 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $request->validate(
+                [
+                    'sensor_id' => 'required',
+                    'soil_moisture' => 'required',
+                    'humidity' => 'required',
+                    'temperature' => 'required',
+                ]
+            );
+            $sensor_id = Sensor::where('id_unique',$request->sensor_id)->first();
+            $data = Log::create(
+                [
+                    'sensor_id' => $sensor_id->id,
+                    'soil_moisture' => $request->soil_moisture,
+                    'humidity' => $request->humidity,
+                    'temperature' => $request->temperature,
+                ]
+            );
+            return ResponseFormatter::success($data);
+        }
+        catch(Exception $e){
+            return ResponseFormatter::error(
+                $e->getTrace(),$e->getMessage()
+            );
+        }
     }
 
     /**
