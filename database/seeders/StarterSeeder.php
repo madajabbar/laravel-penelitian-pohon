@@ -7,6 +7,7 @@ use App\Models\Node;
 use App\Models\Relay;
 use App\Models\Sensor;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -69,15 +70,21 @@ class StarterSeeder extends Seeder
 
         $sensor = Sensor::pluck('id');
         $arr_sensor = $sensor->all();
+        $now = Carbon::now();
+        $j = 0;
         for ($i = 0; $i<10000;$i++){
+
             Log::create(
                 [
                     'sensor_id' => $arr_sensor[rand(0, count($arr_sensor) - 1)],
                     'soil_moisture' => rand(20,60),
                     'humidity' => rand(70,90),
                     'temperature' => rand(22,38),
+                    'quarter' => rand(1,4),
+                    'time' => $now->addMinute($j),
                 ]
             );
+            $j+=15;
         }
         $time_elapsed_secs = microtime(true) - $start;
         print($time_elapsed_secs);

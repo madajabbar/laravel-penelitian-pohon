@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\EdgeController;
 use App\Http\Controllers\API\LogController;
 use App\Http\Controllers\API\NodeController;
 use App\Http\Controllers\API\RelayController;
@@ -29,7 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/log', [LogController::class, 'index']);
 });
 Route::post('login', [AuthController::class, 'login']);
-
+Route::post('/soil',[EdgeController::class,'soil']);
+Route::post('/control',[EdgeController::class,'humiditytemperature']);
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:true'])->group(
     function () {
         Route::resource('/user', UserController::class);
@@ -39,5 +41,5 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'role:true'])->group(
         Route::resource('/relay', RelayController::class);
     }
 );
-
 Route::post('/log', [LogController::class,'store']);
+Route::get('/data', [EdgeController::class,'index']);

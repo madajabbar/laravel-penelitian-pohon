@@ -35,10 +35,12 @@
                     {{$title}} Datatable
                 </div>
                 <div class="button">
-                    <button class="btn btn-primary rounded-pill">
-                        Add New Node
+                    <button class="btn btn-primary rounded-pill"  data-bs-toggle="modal" data-bs-target="#backdrop">
+                        Add New {{$title}}
                     </button>
                 </div>
+
+                @include('backend.relay.form')
             </div>
             <div class="card-body">
                 <table class="table" id="table1">
@@ -47,8 +49,6 @@
                             <th>No</th>
                             <th>ID Relay</th>
                             <th>Name</th>
-                            <th>User</th>
-                            <th>ID Node</th>
                             <th>Created Time</th>
                             <th>Action</th>
                         </tr>
@@ -78,12 +78,68 @@
                   {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                   {data: 'id_unique', name: 'id_unique'},
                   {data: 'name', name: 'name'},
-                  {data: 'user', name: 'user'},
-                  {data: 'id_node', name: 'id_node'},
                   {data: 'created_at', name: 'created_at'},
                   {data: 'action', name: 'action', orderable: false, searchable: false},
               ]
           });
         });
       </script>
+      <script>
+        $('body').on('click', '.input', function() {
+            $('#name').val('');
+        })
+
+        $('body').on('click', '.edit', function() {
+            var data_id = $(this).data('id');
+            $.get("{{ route('relay.index') }}" + '/' + data_id + '/edit', function(data) {
+                $('#exampleModalCenterTitle').html("Edit Relay");
+                $('#saveBtn').html("edit");
+                $('#backdrop').modal('show');
+                $('#id').val(data.id);
+                $('#name').val(data.name);
+            })
+        });
+    </script>
+    <script>
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#saveBtn').click(function(e) {
+                e.preventDefault();
+                $(this).html('Sending..');
+                var myform = document.getElementById('dataForm');
+                var formData = new FormData(myform);
+                $.ajax({
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    url: "{{ route('relay.store') }}",
+                    type: "POST",
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#ajaxModel').modal('hide');
+                        $('#saveBtn').html('success');
+                        // $('#name').val('');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Data berhasil dimasukan',
+                        })
+                        reloadDatatable();
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Terjadi Error!',
+                        })
+                        $('#saveBtn').html('Error');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

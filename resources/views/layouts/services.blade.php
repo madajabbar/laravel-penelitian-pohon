@@ -55,20 +55,6 @@
                                                                 tanah membantu Anda mengoptimalkan irigasi dan
                                                                 menghindari risiko over atau under watering, memastikan
                                                                 tanaman anggur tumbuh dengan sehat dan subur.</p>
-                                                            <div class="ticks-list"><span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span> <span><i class="fa fa-check"></i>
-                                                                    Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span>
-                                                                <span><i class="fa fa-check"></i> Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span> <span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span>
-                                                            </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                elit, sedr do eiusmod deis tempor incididunt.</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 align-self-center">
@@ -94,20 +80,6 @@
                                                                 lingkungan yang ideal bagi pertumbuhan anggur. Dengan
                                                                 akses data ini, Anda dapat mengambil tindakan proaktif
                                                                 untuk menjaga kebun anggur tetap optimal.</p>
-                                                            <div class="ticks-list"><span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span> <span><i class="fa fa-check"></i>
-                                                                    Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span>
-                                                                <span><i class="fa fa-check"></i> Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span> <span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span>
-                                                            </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                elit, sedr do eiusmod deis tempor incididunt.</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 align-self-center">
@@ -133,20 +105,6 @@
                                                                 membantu Anda merencanakan perlindungan tanaman saat
                                                                 suhu ekstrem dan memastikan bahwa anggur Anda tumbuh
                                                                 pada suhu yang ideal.</p>
-                                                            <div class="ticks-list"><span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span> <span><i class="fa fa-check"></i>
-                                                                    Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span>
-                                                                <span><i class="fa fa-check"></i> Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span> <span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span>
-                                                            </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                elit, sedr do eiusmod deis tempor incididunt.</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 align-self-center">
@@ -170,20 +128,6 @@
                                                                 elit, sedr do eiusmod deis tempor incididunt ut
                                                                 labore et dolore kengan darwin doerski token.
                                                                 dover lipsum lorem and the others.</p>
-                                                            <div class="ticks-list"><span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span> <span><i class="fa fa-check"></i>
-                                                                    Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span>
-                                                                <span><i class="fa fa-check"></i> Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span> <span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span>
-                                                            </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                elit, sedr do eiusmod deis tempor incididunt.</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 align-self-center">
@@ -207,20 +151,6 @@
                                                                 elit, sedr do eiusmod deis tempor incididunt ut
                                                                 labore et dolore kengan darwin doerski token.
                                                                 dover lipsum lorem and the others.</p>
-                                                            <div class="ticks-list"><span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span> <span><i class="fa fa-check"></i>
-                                                                    Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span>
-                                                                <span><i class="fa fa-check"></i> Data Info</span>
-                                                                <span><i class="fa fa-check"></i> SEO
-                                                                    Analysis</span> <span><i class="fa fa-check"></i>
-                                                                    Optimized
-                                                                    Template</span>
-                                                            </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                elit, sedr do eiusmod deis tempor incididunt.</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 align-self-center">

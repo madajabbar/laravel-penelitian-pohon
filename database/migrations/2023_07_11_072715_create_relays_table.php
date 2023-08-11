@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('id_unique')->unique();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('node_id');
+            $table->enum('status',["on","off"])->default("off");
+            $table->unsignedBigInteger('control_id');
             $table->timestamps();
 
-            $table->foreign('node_id')->references('id')->on('nodes')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('control_id')->references('id')->on('controls')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

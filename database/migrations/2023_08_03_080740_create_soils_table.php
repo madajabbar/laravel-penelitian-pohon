@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('soils', function (Blueprint $table) {
             $table->id();
+            $table->string('id_unique');
+            $table->integer('value');
             $table->unsignedBigInteger('sensor_id');
-            $table->integer('soil_moisture')->nullable();
-            $table->integer('humidity')->nullable();
-            $table->integer('temperature')->nullable();
-            $table->enum('quarter',[1,2,3,4]);
-            $table->datetime('time');
             $table->timestamps();
 
             $table->foreign('sensor_id')->references('id')->on('sensors')->onUpdate('CASCADE')->onDelete('CASCADE');
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logs');
+        Schema::dropIfExists('soils');
     }
 };

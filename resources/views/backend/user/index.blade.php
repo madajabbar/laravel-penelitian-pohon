@@ -13,15 +13,16 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>DataTable for {{ $title }}</h3>
+                <a href="{{url('api/admin/node')}}">test</a>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="">
-                            <a href="{{ route(strtolower($title) . '.index') }}">{{ $title }}/</a>
+                        <li class="{{ route(strtolower($title) . '.index') }}">
+                            <a href="index.html">{{ $title }}/</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            DataTable
+                            DataTable Jquery
                         </li>
                     </ol>
                 </nav>
@@ -41,19 +42,18 @@
                         Add New {{ $title }}
                     </button>
                 </div>
+
                 <!--Disabled Backdrop Modal -->
-                @include('backend.node.form')
+                @include('backend.user.form')
             </div>
             <div class="card-body">
                 <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Node</th>
                             <th>Name</th>
-                            <th>User</th>
-                            <th>Type</th>
-                            <th>Sensor/Relay</th>
+                            <th>Email</th>
+                            <th>Pot</th>
                             <th>Created Time</th>
                             <th>Action</th>
                         </tr>
@@ -78,30 +78,22 @@
             var table = $('.table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('node.index') }}",
+                ajax: "{{ route('user.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'id_unique',
-                        name: 'id_unique'
                     },
                     {
                         data: 'name',
                         name: 'name'
                     },
                     {
-                        data: 'user',
-                        name: 'user'
+                        data: 'email',
+                        name: 'email'
                     },
                     {
-                        data: 'type',
-                        name: 'type'
-                    },
-                    {
-                        data: 'sensor/relay',
-                        name: 'sensor/relay'
+                        data: 'pot',
+                        name: 'pot'
                     },
                     {
                         data: 'created_at',
@@ -121,29 +113,20 @@
     <script>
         $('body').on('click', '.input', function() {
             $('#name').val('');
+            $('#email').val('');
+            $('#password').val('');
         })
 
         $('body').on('click', '.edit', function() {
             var data_id = $(this).data('id');
-            $.get("{{ route('node.index') }}" + '/' + data_id + '/edit', function(data) {
+            $.get("{{ route('user.index') }}" + '/' + data_id + '/edit', function(data) {
                 $('#exampleModalCenterTitle').html("Edit anggota");
                 $('#saveBtn').html("edit");
                 $('#backdrop').modal('show');
                 $('#id').val(data.id);
                 $('#name').val(data.name);
-                $("#user_id option").filter(function () {
-                    console.log(data.user_id);
-                    return $.trim($(this).val()) == data.user_id
-                }).prop('selected', true);
-                $("#control_id option").filter(function () {
-                    console.log(data.id_unique);
-                    if(data.id_unique.includes("NM")){
-                        return $.trim($(this).val()) == "NM"
-                    }
-                    else{
-                        return $.trim($(this).val()) == "NC"
-                    }
-                }).prop('selected', true);
+                $('#email').val(data.email);
+                $('#password').val(data.password);
                 // $('.choices').selectpicker('refresh')
             })
         });
@@ -165,7 +148,7 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    url: "{{ route('node.store') }}",
+                    url: "{{ route('user.store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {

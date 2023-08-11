@@ -10,13 +10,13 @@ class Node extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function relay(){
-        return $this->hasMany(Relay::class);
-    }
     public function sensor(){
         return $this->hasMany(Sensor::class);
     }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function control(){
+        return $this->belongsTo(Control::class);
     }
 }

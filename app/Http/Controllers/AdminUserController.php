@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ResponseFormatter;
-use App\Models\Control;
-use App\Models\Node;
 use App\Models\User;
-use App\Traits\CreateDataTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
-class NodeController extends Controller
+class AdminUserController extends Controller
 {
-    use CreateDataTrait;
     public function index(Request $request){
-        $data['title'] = 'Node';
+        $data['title'] = 'User';
         $data['user'] = User::all();
-        $data['control'] = Control::all();
         if($request->ajax()){
-            $value = Node::all();
+            $value = User::all();
             return DataTables::of($value)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -29,44 +24,49 @@ class NodeController extends Controller
                             ';
                             return $btn;
                     })
-                    ->addColumn('user', function($row){
-                        return $row->user->name;
-                    })
-                    ->addColumn('sensor/relay', function($row){
-                        return count($row->sensor);
-                    })
                     ->editColumn('created_at', function($row){
-                        return Carbon::parse($row->created_at);
+                        return Carbon::parse($row->created_at)->format('Y-m-d');
                     })
-                    ->addColumn('type', function($row){
-                        $type = $row->id_unique;
-                        if(str_contains($type,'NM')){
-                            $type = 'NODE MONITOR';
+                    ->addColumn('pot', function($row){
+                        $data = [];
+                        foreach($row->node as $node){
+                            foreach($node->sensor as $sensor){
+                                $data[] = $sensor->name;
+                            }
                         }
-                        else{
-                            $type = 'NODE CONTROL';
-                        }
-                        return $type;
+                        $hasil = count($data). " Buah";
+                        return $hasil;
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('backend.node.index',$data);
+        return view('backend.user.index',$data);
     }
 
     public function store(Request $request){
         $request->validate(
             [
-                'user_id' => 'required',
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
             ]
         );
-        $data = $this->CreateOrUpdateNode($request);
+
+        $data = User::updateOrCreate(
+            [
+                'id' => $request->id,
+            ],
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_admin' => 'false'
+            ]
+        );
         return $data;
-
     }
-
     public function edit($id){
-        $data = Node::find($id);
+        $data = User::find($id);
         return $data;
     }
 }

@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ResponseFormatter;
 use App\Models\Control;
-use App\Models\Node;
-use App\Models\User;
 use App\Traits\CreateDataTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class NodeController extends Controller
+class ControlController extends Controller
 {
     use CreateDataTrait;
     public function index(Request $request){
-        $data['title'] = 'Node';
-        $data['user'] = User::all();
-        $data['control'] = Control::all();
+        $data['title'] = 'Control';
         if($request->ajax()){
-            $value = Node::all();
+            $value = Control::all();
             return DataTables::of($value)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -29,44 +24,31 @@ class NodeController extends Controller
                             ';
                             return $btn;
                     })
-                    ->addColumn('user', function($row){
-                        return $row->user->name;
-                    })
-                    ->addColumn('sensor/relay', function($row){
-                        return count($row->sensor);
+                    ->addColumn('node', function($row){
+                        return count($row->node);
                     })
                     ->editColumn('created_at', function($row){
-                        return Carbon::parse($row->created_at);
-                    })
-                    ->addColumn('type', function($row){
-                        $type = $row->id_unique;
-                        if(str_contains($type,'NM')){
-                            $type = 'NODE MONITOR';
-                        }
-                        else{
-                            $type = 'NODE CONTROL';
-                        }
-                        return $type;
+                        return Carbon::parse($row->created_at)->format('Y-m-d');
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('backend.node.index',$data);
+        return view('backend.control.index',$data);
     }
 
     public function store(Request $request){
         $request->validate(
             [
-                'user_id' => 'required',
+                'name' => 'required',
             ]
         );
-        $data = $this->CreateOrUpdateNode($request);
+        $data = $this->CreateOrUpdateControl($request);
         return $data;
 
     }
 
     public function edit($id){
-        $data = Node::find($id);
+        $data = Control::find($id);
         return $data;
     }
 }

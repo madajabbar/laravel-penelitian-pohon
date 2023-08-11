@@ -16,7 +16,7 @@
                                 <img src="{{asset('frontend/assets/images/contact-dec-v3.png')}}" alt="">
                             </div>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-12">
                             <div id="map">
                                 <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9218.559892080784!2d109.33937804185899!3d-0.059263307934824205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d59972b85950f%3A0x3e453dacc71a6e21!2sGedung%20Prodi%20Sistem%20Komputer!5e0!3m2!1sen!2sid!4v1689782900754!5m2!1sen!2sid"
@@ -24,7 +24,7 @@
                                     allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="col-lg-7">
+                        {{-- <div class="col-lg-7">
                             <div class="fill-form">
                                 <div class="row">
                                     <div class="col-lg-4">
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
             </div>

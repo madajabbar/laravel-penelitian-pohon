@@ -25,6 +25,5 @@ class Role
                 'User Has No Access'
             );
         }
-
     }
 }

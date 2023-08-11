@@ -1,4 +1,4 @@
-<form id="dataForm" class="form form-horizontal" action="{{ route('node.store') }}" method="POST">
+<form id="dataForm" class="form form-horizontal" action="{{ route('control.store') }}" method="POST">
     @csrf
     <div class="modal fade text-left" id="backdrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4"
         data-bs-backdrop="false" aria-hidden="true">
@@ -27,34 +27,6 @@
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-person"></i>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>User</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group has-icon-left">
-                                            <div class="position-relative">
-                                                <select class="choices form-select" name="user_id" id="user_id">
-                                                    @foreach ($user as $data)
-                                                        <option value="{{$data->id}}">{{$data->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>Node Control</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group has-icon-left">
-                                            <div class="position-relative">
-                                                <select class="choices form-select" name="control_id" id="control_id">
-                                                    @foreach ($control as $data)
-                                                        <option value="{{$data->id}}">{{$data->name}}</option>
-                                                    @endforeach
-                                                </select>
                                             </div>
                                         </div>
                                     </div>

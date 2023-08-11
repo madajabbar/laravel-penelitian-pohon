@@ -6,30 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="IoTSISKOM">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <title>DigiMedia - Creative SEO HTML5 Template</title>
+    <title>Sipinggur - IOTSISKOM</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{asset('logo.ico')}}">
 
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/fontawesome.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/templatemo-digimedia-v3.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/animated.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/owl.css')}}">
-    <!--
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/templatemo-digimedia-v3.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/animated.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.css') }}">
 
-TemplateMo 568 DigiMedia
-
-https://templatemo.com/tm-568-digimedia
-
--->
 </head>
 
 <body>
@@ -56,7 +51,7 @@ https://templatemo.com/tm-568-digimedia
 
     {{-- @include('layouts.quote') --}}
 
-    @include('layouts.portfolio')
+    {{-- @include('layouts.portfolio') --}}
 
     {{-- @include('layouts.blog') --}}
 
@@ -68,8 +63,7 @@ https://templatemo.com/tm-568-digimedia
             <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright © 2023 Sistem Komputer Co., Ltd. All Rights Reserved.
-                        <br><a href="https://iotsiskom.com" target="_parent"
-                            title="IoTSISKOM">IOTSISKOM</a>
+                        <br><a href="https://iotsiskom.com" target="_parent" title="IoTSISKOM">IOTSISKOM</a>
                     </p>
                 </div>
             </div>
@@ -78,12 +72,12 @@ https://templatemo.com/tm-568-digimedia
 
 
     <!-- Scripts -->
-    <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/owl-carousel.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/animation.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/imagesloaded.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/custom.js')}}"></script>
+    <script src="{{ asset('frontend/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/owl-carousel.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/animation.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/imagesloaded.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
 
 </body>
 

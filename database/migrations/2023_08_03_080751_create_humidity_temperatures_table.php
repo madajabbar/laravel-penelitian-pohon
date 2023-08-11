@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nodes', function (Blueprint $table) {
+        Schema::create('humidity_temperatures', function (Blueprint $table) {
             $table->id();
-            $table->string('id_unique')->unique();
-            $table->string('name')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->integer('humidity');
+            $table->integer('temperature');
             $table->unsignedBigInteger('control_id');
             $table->timestamps();
-
             $table->foreign('control_id')->references('id')->on('controls')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nodes');
+        Schema::dropIfExists('humidity_temperatures');
     }
 };

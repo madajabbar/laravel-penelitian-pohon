@@ -6,7 +6,7 @@ use App\Models\Log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class LogController extends Controller
 {

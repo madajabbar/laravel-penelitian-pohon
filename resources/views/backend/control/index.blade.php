@@ -42,18 +42,16 @@
                     </button>
                 </div>
                 <!--Disabled Backdrop Modal -->
-                @include('backend.node.form')
+                @include('backend.control.form')
             </div>
             <div class="card-body">
                 <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID Node</th>
+                            <th>ID Control</th>
                             <th>Name</th>
-                            <th>User</th>
-                            <th>Type</th>
-                            <th>Sensor/Relay</th>
+                            <th>Node</th>
                             <th>Created Time</th>
                             <th>Action</th>
                         </tr>
@@ -78,7 +76,7 @@
             var table = $('.table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('node.index') }}",
+                ajax: "{{ route('control.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -92,16 +90,8 @@
                         name: 'name'
                     },
                     {
-                        data: 'user',
-                        name: 'user'
-                    },
-                    {
-                        data: 'type',
-                        name: 'type'
-                    },
-                    {
-                        data: 'sensor/relay',
-                        name: 'sensor/relay'
+                        data: 'node',
+                        name: 'node'
                     },
                     {
                         data: 'created_at',
@@ -125,7 +115,7 @@
 
         $('body').on('click', '.edit', function() {
             var data_id = $(this).data('id');
-            $.get("{{ route('node.index') }}" + '/' + data_id + '/edit', function(data) {
+            $.get("{{ route('control.index') }}" + '/' + data_id + '/edit', function(data) {
                 $('#exampleModalCenterTitle').html("Edit anggota");
                 $('#saveBtn').html("edit");
                 $('#backdrop').modal('show');
@@ -135,7 +125,7 @@
                     console.log(data.user_id);
                     return $.trim($(this).val()) == data.user_id
                 }).prop('selected', true);
-                $("#control_id option").filter(function () {
+                $("#node_type option").filter(function () {
                     console.log(data.id_unique);
                     if(data.id_unique.includes("NM")){
                         return $.trim($(this).val()) == "NM"
@@ -165,7 +155,7 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    url: "{{ route('node.store') }}",
+                    url: "{{ route('control.store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {

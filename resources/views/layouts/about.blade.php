@@ -17,11 +17,6 @@
                                 <h4>Merangkai Teknologi dan Kebijaksanaan Pertanian untuk Masa Depan Anggur yang <em>Gemilang</em></h4>
                                 <div class="line-dec"></div>
                             </div>
-                            <p>We hope this DigiMedia template is useful for your work. You can use this template
-                                for any purpose. You may <a rel="nofollow" href="http://paypal.me/templatemo"
-                                    target="_blank">contribute a little amount</a> via PayPal to <a
-                                    href="https://templatemo.com/contact" target="_blank">support TemplateMo</a>
-                                in creating new templates regularly.</p>
                             <div class="row">
                                 <div class="col-lg-4 col-sm-4">
                                     <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s"

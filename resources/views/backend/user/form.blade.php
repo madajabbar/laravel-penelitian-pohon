@@ -1,4 +1,4 @@
-<form id="dataForm" class="form form-horizontal" action="{{ route('node.store') }}" method="POST">
+<form id="dataForm" class="form form-horizontal" action="{{ route('user.store') }}" method="POST">
     @csrf
     <div class="modal fade text-left" id="backdrop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4"
         data-bs-backdrop="false" aria-hidden="true">
@@ -31,30 +31,30 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>User</label>
+                                        <label>Email</label>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group has-icon-left">
                                             <div class="position-relative">
-                                                <select class="choices form-select" name="user_id" id="user_id">
-                                                    @foreach ($user as $data)
-                                                        <option value="{{$data->id}}">{{$data->name}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="email" class="form-control" placeholder="email" name="email"
+                                                    id="email">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-at"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>Node Control</label>
+                                        <label>Password</label>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group has-icon-left">
                                             <div class="position-relative">
-                                                <select class="choices form-select" name="control_id" id="control_id">
-                                                    @foreach ($control as $data)
-                                                        <option value="{{$data->id}}">{{$data->name}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="password" class="form-control" placeholder="password" name="password"
+                                                    id="password">
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-lock"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
