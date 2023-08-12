@@ -21,6 +21,7 @@ class EdgeController extends Controller
 {
     public function index()
     {
+        $data['threshold'] = Threshold::all();
         $data['node'] = Node::all();
         $data['sensor'] = Sensor::all();
         $data['relay'] = Relay::all();
@@ -130,7 +131,87 @@ class EdgeController extends Controller
 
         return response()->json($control->relay);
     }
-    public function checksensor()
+    public function edgeSoil(Request $request)
     {
+
+        // return response()->json($request[0][]);
+        $now = Carbon::now();
+        $roundedMinutes = $now->minute - ($now->minute % 15);
+        $time = Carbon::create($now->year, $now->month, $now->day, $now->hour, $roundedMinutes);
+        try {
+            $tmp = [];
+            $threshold = Threshold::first();
+            $i = 0;
+            $data = [];
+            foreach($request[0] as $value) {
+                // return response()->json($value['sensor_id']);
+                $temp = Temp::where('id_unique', $value['sensor_id'])->first();
+                $sensor = Sensor::where('id_unique', $value['sensor_id'])->first();
+                $node = $sensor->node;
+                if ($temp == null) {
+                    Temp::create(
+                        [
+                            'id_unique' => $value['sensor_id'],
+                            'value' => $value['value']
+                        ]
+                    );
+                    $data[] = Soil::create(
+                        [
+                            'id_unique' => $value['sensor_id'],
+                            'value' => $value['value']
+                        ]
+                    );
+                }
+                if (abs($value['value'] - $temp->value) >= $threshold->soil_moisture) {
+                    $tmp = abs($value['value'] - $temp->value);
+                    $temp->value = $value['value'];
+                    $temp->save();
+                    $data[] = Soil::updateOrCreate(
+                        [
+                            'id_unique' => $value['sensor_id']
+                        ],
+                        [
+                            'id_unique' => $value['sensor_id'],
+                            'value' => $value['value'],
+                            'sensor_id' => $sensor->id,
+                        ]
+                    );
+                }
+                $nowQuarter = (int) ceil($now->minute / 15);
+                $log = Log::where('sensor_id', $sensor->id)->orderBy('id', 'DESC')->first();
+                $humidityTemperature = HumidityTemperature::where('control_id', $sensor->node->control->id)->first();
+                if ($log == null) {
+                    Log::create(
+                        [
+                            'sensor_id' => $sensor->id,
+                            'soil_moisture' => $value['value'],
+                            'humidity' => $humidityTemperature ? $humidityTemperature->humidity : null,
+                            'temperature' => $humidityTemperature ? $humidityTemperature->temperature : null,
+                            'time' => $time,
+                            'quarter' => $nowQuarter,
+                        ]
+                    );
+                } else {
+                    $quarter = $log->quarter;
+                    if ($nowQuarter != $quarter) {
+                        Log::create(
+                            [
+                                'sensor_id' => $sensor->id,
+                                'soil_moisture' => $value['value'],
+                                'time' => $time,
+                                'quarter' => $nowQuarter,
+                                'humidity' => $humidityTemperature ? $humidityTemperature->humidity : null,
+                                'temperature' => $humidityTemperature ? $humidityTemperature->temperature : null,
+                            ]
+                        );
+                    }
+                }
+                $i++;
+            }
+            return response()->json($data);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage(), 401);
+        }
+        return response()->json('akhir');
     }
 }

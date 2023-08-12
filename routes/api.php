@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::post('login', [AuthController::class, 'login']);
 Route::post('/soil',[EdgeController::class,'soil']);
+Route::post('/edge/soil',[EdgeController::class,'edgeSoil']);
 Route::post('/control',[EdgeController::class,'humiditytemperature']);
 Route::prefix('admin')->middleware(['auth:sanctum', 'role:true'])->group(
     function () {
