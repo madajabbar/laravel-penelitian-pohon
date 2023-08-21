@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('/node', [NodeController::class, 'index']);
     Route::get('/sensor', [SensorController::class, 'index']);
-    Route::get('/relay', [RelayController::class, 'index']);
+    Route::get('/control', [RelayController::class, 'index']);
     Route::get('/log', [LogController::class, 'index']);
 });
 Route::post('login', [AuthController::class, 'login']);

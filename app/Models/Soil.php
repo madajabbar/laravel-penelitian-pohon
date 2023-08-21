@@ -9,4 +9,7 @@ class Soil extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function sensor(){
+        return $this->belongsTo(Sensor::class);
+    }
 }

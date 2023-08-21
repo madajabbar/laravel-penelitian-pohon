@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Models\Control;
 use App\Models\Node;
 use App\Models\Relay;
 use App\Traits\CreateDataTrait;
@@ -25,8 +26,9 @@ class RelayController extends Controller
                 $data = Relay::all();
             }
             else{
-                $data['node'] = Node::where('user_id',$user->id)->where('id_unique','like','%NC%')->first();
-                $data['relay'] = Relay::whereIn('node_id',$user->node->pluck('id'))->get();
+                $data = Control::find($user->node[0]->control->id);
+                $data->relay;
+                $data->humidityTemperature;
             }
             return ResponseFormatter::success($data);
         }

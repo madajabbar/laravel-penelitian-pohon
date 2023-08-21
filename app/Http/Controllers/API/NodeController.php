@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ApiNodeResource;
 use App\Models\Node;
 use App\Traits\CreateDataTrait;
 use Exception;
@@ -25,6 +26,7 @@ class NodeController extends Controller
                 $data = Node::all();
             } else {
                 $data = Node::where('user_id', $user->id)->get();
+                $data = ApiNodeResource::collection($data);
             }
 
             return ResponseFormatter::success($data);
@@ -54,7 +56,7 @@ class NodeController extends Controller
             );
 
             $data = $this->CreateOrUpdateNode($request);
-            
+
             return ResponseFormatter::success($data);
         } catch (Exception $e) {
             return ResponseFormatter::error($e->getMessage());

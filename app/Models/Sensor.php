@@ -16,4 +16,7 @@ class Sensor extends Model
     public function log(){
         return $this->hasMany(Log::class);
     }
+    public function soil(){
+        return $this->hasOne(Soil::class);
+    }
 }

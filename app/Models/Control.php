@@ -18,7 +18,7 @@ class Control extends Model
         return $this->hasMany(Relay::class);
     }
     public function humidityTemperature(){
-        return $this->hasMany(HumidityTemperature::class);
+        return $this->hasOne(HumidityTemperature::class);
     }
 
 

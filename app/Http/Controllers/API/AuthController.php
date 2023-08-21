@@ -14,27 +14,36 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:8'
-        ]);
+        try{
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|string|email|max:255',
+                'password' => 'required|string|min:8'
+            ]);
 
-        if ($validator->fails()) {
-            return ResponseFormatter::error($validator->errors());
+            if ($validator->fails()) {
+                return ResponseFormatter::error($validator->errors());
+            }
+
+            $user = User::where('email', $request->email)->first();
+            $this->check($user,$request);
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            return ResponseFormatter::success(
+                [
+                    'user' => $user,
+                    'token_type' => 'Bearer',
+                    'access_token' => $token
+                ]
+            );
+        }
+        catch(Exception $e){
+            return ResponseFormatter::error([
+                'message' => $e->getMessage(),
+                'trace' => $e->getTrace(),
+            ], 'User Unregistered', 500);
         }
 
-        $user = User::where('email', $request->email)->first();
-        $this->check($user,$request);
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return ResponseFormatter::success(
-            [
-                'user' => $user,
-                'token_type' => 'Bearer',
-                'access_token' => $token
-            ]
-        );
     }
 
     public function logout(Request $request){
